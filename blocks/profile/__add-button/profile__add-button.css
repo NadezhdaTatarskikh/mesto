@@ -1,0 +1,28 @@
+.profile__add-button {
+    display: flex;
+    width: 150px;
+    height: 50px;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+    border: 2px solid #FFFFFF;
+    border-radius: 2px;
+    background: url('../../../images/Vector\ \(1\).png') center no-repeat;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 710px) {
+    .profile__add-button {
+      width: 100%;
+      background-size: 17px 17px;
+    }
+  }
+
+.profile__add-button:hover {
+    opacity: 0.6;
+}
+
+
+
+

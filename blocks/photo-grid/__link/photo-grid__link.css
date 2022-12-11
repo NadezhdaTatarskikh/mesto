@@ -1,0 +1,9 @@
+.photo-grid__link {
+  background-color:  #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #000000;
+  min-height: 79px;
+  width: 100%;
+}

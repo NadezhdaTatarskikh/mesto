@@ -1,0 +1,15 @@
+.photo-grid__button {
+    background-image: url(../../../images/Vector\ \(3\).png);
+    width: 22px;
+    height: 19px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    margin-right: 20px;
+}
+
+.photo-grid__button:hover {
+    opacity: 0.5;
+  }
+
+
