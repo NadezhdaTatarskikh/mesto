@@ -70,13 +70,15 @@
 </main>
 <footer class="footer">&copy; 2020 Mesto Russia></footer>
 <div class="popup">
-  <div class="popup__content">
+  <div class="popup__container">
     <button class="popup__close-button" type="button"></button>
     <h3 class="popup__header">Редактировать профиль</h3>
-    <form action="#" method="post" name="addProfile">
-      <input type="text" class="popup__text" name="name" placeholder="Ваше Имя" value="Жак-Ив Кусто">
-      <input type="text" class="popup__text" name="addJob" placeholder="Введите должность" value="Исследователь океана">
-      <input type="submit" class="popup__button"  value="Сохранить">
+    <form action="#" method="post" name="addProfile" class="popup__profile">
+      <div class="popup__text">
+        <input type="text" class="popup__text-name" name="addName" placeholder="Ваше Имя" value="Жак-Ив Кусто">
+        <input type="text" class="popup__text-job" name="addJob" placeholder="Введите должность" value="Исследователь океана">
+      </div>
+        <input type="submit" class="popup__button"  value="Сохранить">
     </form>
   </div>
 </div>

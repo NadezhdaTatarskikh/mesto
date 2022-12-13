@@ -9,16 +9,11 @@
 }
 
 
-@media screen and (max-width: 910px) {
-    .photo-grids {
-      grid-template-columns: repeat(2, calc(50% - 17px / 2) );
-    }
-  }
-
   @media screen and (max-width: 600px) {
     .photo-grids {
-      grid-template-columns: minmax(282px, 1fr);
+      margin-bottom: 48px;
     }
   }
 
 
+  
