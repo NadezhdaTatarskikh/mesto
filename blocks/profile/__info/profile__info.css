@@ -3,7 +3,6 @@
     grid-template-columns: fit-content(80%) min-content;
     flex-grow: 1;
     margin: 0 30px;
-    position: relative;
  }
 
  @media screen and (max-width: 720px) {

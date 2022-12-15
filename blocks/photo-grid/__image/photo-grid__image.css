@@ -5,5 +5,6 @@
     object-fit: cover;
     display: block;
     object-position: center center;
+    border-radius: 10px 10px 0 0;
 }
 

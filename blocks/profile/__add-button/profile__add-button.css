@@ -8,13 +8,14 @@
     background-size: 22px 22px;
     border: 2px solid #FFFFFF;
     border-radius: 2px;
-    background: url('../../../images/Vector\ \(3\).svg') center no-repeat;
+    background-image: url(../../../images/VectorPlus.svg);
     cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
 }
 
 @media screen and (max-width: 710px) {
     .profile__add-button {
-      width: 100%;
+      width: 282px;
       background-size: 16px 16px;
     }
   }

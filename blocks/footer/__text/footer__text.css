@@ -1,5 +1,5 @@
-.footer {
-    width: 880px;
+.footer__text {
+    max-width: 880px;
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
@@ -10,11 +10,11 @@
 
 
 @media screen and (max-width: 910px) {
-    .footer {
+    .footer__text {
       padding-bottom: 36px;
       font-size: 14px;
       line-height: 17px;
-      width: 282px;
+      max-width: 282px;
       margin: 0 19px;
     }
   }

@@ -1,6 +1,6 @@
 .profile__edit {
     border: 1px solid #fff;
-    background: url('../../../images/Vector\ \(1\).svg') center no-repeat;
+    background-image: url(../../../images/VectorPensl.svg);
     cursor: pointer;
     width: 24px;
     height: 24px;
@@ -9,7 +9,8 @@
     background-color: transparent;
     margin: 15px 0 41px 18px;
     padding: 0;
-    background-position: center center;
+    background-position: center;
+    background-size: 10px 10px;
 }
 
 @media screen and (max-width: 710px) {
@@ -17,6 +18,7 @@
       width: 18px;
       height: 18px;
       margin: 8px 19px 0 14px;
+      background-size: 7.5px 7.5px;
     }
   }
 
