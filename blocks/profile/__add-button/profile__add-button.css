@@ -11,11 +11,13 @@
     background-image: url(../../../images/VectorPlus.svg);
     cursor: pointer;
     transition: opacity 0.3s ease-in-out;
+    margin: 0;
+    padding: 0;
 }
 
 @media screen and (max-width: 710px) {
     .profile__add-button {
-      width: 282px;
+      width: 100%;
       background-size: 16px 16px;
     }
   }
