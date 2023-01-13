@@ -42,7 +42,7 @@
 
 ## Чек лист:
 
-[Чек лист] (https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-5.pdf)
+[Чек лист](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-5.pdf)
 
 ## Доработать:
 
