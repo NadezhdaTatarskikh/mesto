@@ -1,9 +1,9 @@
- const popup = document.querySelector('.popup');
+const popup = document.querySelector('.popup');
 const popupClose = document.querySelector('.popup__close-button');
 
 const profile = document.querySelector('.profile');
-const editProfile = profile.querySelector('.profile__edit');
-const editProfileCard = profile.querySelector('.profile__add-button');
+const profileButton = profile.querySelector('.profile__edit');
+const buttonOpenPopapCard = profile.querySelector('.profile__add-button');
 const profileName = profile.querySelector('.profile__name');
 const profileJob = profile.querySelector('.profile__job');
 
@@ -13,13 +13,13 @@ const elementList = document.querySelector('.photo-grid');
 const popupImage = document.querySelector('.popup_name_image');
 const popupImageImage = popupImage.querySelector('.popup__image');
 const popupImageTitle = popupImage.querySelector('.popup__image-title');
-const imagecloseButton = popupImage.querySelector('.popup__close-button');
+const buttonImageClose = popupImage.querySelector('.popup__close-button');
 
 const popupProfile = document.querySelector('.popup_name_profile')
 const formElement = popupProfile.querySelector('.popup__profile_name_profile');
 const profileNameInput = popupProfile.querySelector('.popup__input_text_name');
 const profileJobinput = popupProfile.querySelector('.popup__input_text_job');
-const profileCloseButton = popupProfile.querySelector('.popup__close-button');
+const buttonProfileClose = popupProfile.querySelector('.popup__close-button');
 
 const popupCard = document.querySelector('.popup_name_photo');
 const cardAddForm = popupCard.querySelector('.popup__profile_name_photo');
@@ -39,7 +39,7 @@ function createCard(item) {
   const templateElement = template.querySelector('.photo-grid__item').cloneNode(true);
   const templateLike = templateElement.querySelector('.photo-grid__button');
   const templateDelite = templateElement.querySelector('.photo-grid__delete');
-  const ImageButton = templateElement.querySelector('.photo-grid__image');
+  const imageButton = templateElement.querySelector('.photo-grid__image');
   const cardTitle = templateElement.querySelector('.photo-grid__text');
   const cardImage = templateElement.querySelector('.photo-grid__image');
 
@@ -50,7 +50,7 @@ function createCard(item) {
     templateLike.addEventListener('click', (evt) => { evt.target.classList.toggle('photo-grid__button_active')});
     templateDelite.addEventListener('click', (evt) => { evt.target.closest('.photo-grid__item').remove()});
 
-    ImageButton.addEventListener('click', () => {
+    imageButton.addEventListener('click', () => {
       popupImageImage.src = item.link;
       popupImageImage.alt = item.name;
       popupImageTitle.textContent = item.name;
@@ -63,6 +63,7 @@ return templateElement;
 initialCards.map(function (item) {
   elementList.append(createCard(item));
 });
+
 
 function handleProfileButton () {
   profileNameInput.value = profileName.textContent;
@@ -82,15 +83,15 @@ function handleNewCardFormSubmit(evt) {
   const newCard = { name: cardInputName.value, link: cardInputLink.value };
   elementList.prepend(createCard(newCard));
   closePopup(popupCard);
-  titleInput.value = "";
-  imageInput.value = "";
+  cardInputName.value = "";
+  cardInputLink.value = "";
 };
 
 function handleCardButton() {
   openPopup(popupCard);
 }
 
-profileCloseButton.addEventListener("click", () => {
+buttonProfileClose.addEventListener("click", () => {
   closePopup(popupProfile);
 });
 
@@ -98,12 +99,13 @@ cardCloseButton.addEventListener("click", () => {
   closePopup(popupCard);
 });
 
-imagecloseButton.addEventListener("click", () => {
+buttonImageClose.addEventListener("click", () => {
   closePopup(popupImage);
 });
 
-editProfile.addEventListener("click", handleProfileButton);
-editProfileCard.addEventListener("click", handleCardButton);
+
+profileButton.addEventListener("click", handleProfileButton);
+buttonOpenPopapCard.addEventListener("click", handleCardButton);
 formElement.addEventListener('submit', handleProfileFormSubmit);
 cardAddForm.addEventListener('submit', handleNewCardFormSubmit);
 

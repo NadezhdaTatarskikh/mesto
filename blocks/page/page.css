@@ -9,5 +9,6 @@
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
   }
