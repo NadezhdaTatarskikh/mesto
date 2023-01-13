@@ -5,7 +5,8 @@
     width: 24px;
     height: 24px;
     background-repeat: no-repeat;
-    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
     background-color: transparent;
     padding: 0;
     background-position: center;
@@ -24,5 +25,5 @@
   }
 
 .profile__edit:hover {
-    opacity: .6;
+    opacity: 0.6;
   }

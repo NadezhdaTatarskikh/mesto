@@ -9,8 +9,9 @@
     border: 2px solid #FFFFFF;
     border-radius: 2px;
     background-image: url(../../../images/VectorPlus.svg);
+    opacity: 1;
     cursor: pointer;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
     margin: 0;
     padding: 0;
 }
