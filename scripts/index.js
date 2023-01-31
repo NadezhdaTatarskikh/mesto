@@ -1,4 +1,3 @@
-const popup = document.querySelector('.popup');
 const popupClose = document.querySelector('.popup__close-button');
 
 const profile = document.querySelector('.profile');
@@ -16,24 +15,46 @@ const popupImageTitle = popupImage.querySelector('.popup__image-title');
 const buttonImageClose = popupImage.querySelector('.popup__close-button');
 
 const popupProfile = document.querySelector('.popup_name_profile')
-const formElement = popupProfile.querySelector('.popup__profile_name_profile');
+const formElement = popupProfile.querySelector('.popup__form_name_profile');
 const profileNameInput = popupProfile.querySelector('.popup__input_text_name');
 const profileJobinput = popupProfile.querySelector('.popup__input_text_job');
 const buttonProfileClose = popupProfile.querySelector('.popup__close-button');
 
 const popupCard = document.querySelector('.popup_name_photo');
-const cardAddForm = popupCard.querySelector('.popup__profile_name_photo');
+const cardAddForm = popupCard.querySelector('.popup__form_name_photo');
 const cardInputName = popupCard.querySelector('.popup__input_text_title');
 const cardInputLink = popupCard.querySelector('.popup__input_text_link');
 const cardCloseButton = popupCard.querySelector('.popup__close-button');
 
+const popupList = Array.from(document.querySelectorAll('.popup'));
+// Функция закрытия открытого popup по клику
+popupList.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+      if (evt.target.classList.contains('popup_opened')) {
+          closePopup(popup)
+      }
+      if (evt.target.classList.contains('popup__close-button')) {
+        closePopup(popup)
+      }
+  })
+})
+// Общая функция открытия попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEscape);
 };
-
+//Общая функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByEscape);
 };
+//Функция закрытия попапа по нажатию на кнопку "ESC"
+function closePopupByEscape(event) {
+  if (event.key == 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+   }
+}
 
 function createCard(item) {
   const templateElement = template.querySelector('.photo-grid__item').cloneNode(true);
