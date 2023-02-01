@@ -1,5 +1,3 @@
-const popupClose = document.querySelector('.popup__close-button');
-
 const profile = document.querySelector('.profile');
 const profileButton = profile.querySelector('.profile__edit');
 const buttonOpenPopapCard = profile.querySelector('.profile__add-button');
@@ -15,7 +13,7 @@ const popupImageTitle = popupImage.querySelector('.popup__image-title');
 const buttonImageClose = popupImage.querySelector('.popup__close-button');
 
 const popupProfile = document.querySelector('.popup_name_profile')
-const formElement = popupProfile.querySelector('.popup__form_name_profile');
+const formProfileElement = popupProfile.querySelector('.popup__form_name_profile');
 const profileNameInput = popupProfile.querySelector('.popup__input_text_name');
 const profileJobinput = popupProfile.querySelector('.popup__input_text_job');
 const buttonProfileClose = popupProfile.querySelector('.popup__close-button');
@@ -25,6 +23,7 @@ const cardAddForm = popupCard.querySelector('.popup__form_name_photo');
 const cardInputName = popupCard.querySelector('.popup__input_text_title');
 const cardInputLink = popupCard.querySelector('.popup__input_text_link');
 const cardCloseButton = popupCard.querySelector('.popup__close-button');
+const submitButton = popupCard.querySelector('.popup__button');
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
 // Функция закрытия открытого popup по клику
@@ -106,6 +105,8 @@ function handleNewCardFormSubmit(evt) {
   closePopup(popupCard);
   cardInputName.value = "";
   cardInputLink.value = "";
+  submitButton.disabled = true;
+  submitButton.classList.add('popup__button_disabled');
 };
 
 function handleCardButton() {
@@ -127,7 +128,7 @@ buttonImageClose.addEventListener("click", () => {
 
 profileButton.addEventListener("click", handleProfileButton);
 buttonOpenPopapCard.addEventListener("click", handleCardButton);
-formElement.addEventListener('submit', handleProfileFormSubmit);
+formProfileElement.addEventListener('submit', handleProfileFormSubmit);
 cardAddForm.addEventListener('submit', handleNewCardFormSubmit);
 
 
