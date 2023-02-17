@@ -1,11 +1,15 @@
+import { initialCards, config } from "./cards.js";
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+
 const profile = document.querySelector('.profile');
 const profileButton = profile.querySelector('.profile__edit');
 const buttonOpenPopapCard = profile.querySelector('.profile__add-button');
 const profileName = profile.querySelector('.profile__name');
 const profileJob = profile.querySelector('.profile__job');
 
-const template = document.querySelector('.card-template').content;
 const elementList = document.querySelector('.photo-grid');
+const template = document.querySelector('.card-template').content.querySelector('.photo-grid__item');
 
 const popupImage = document.querySelector('.popup_name_image');
 const popupImageImage = popupImage.querySelector('.popup__image');
@@ -26,6 +30,7 @@ const cardCloseButton = popupCard.querySelector('.popup__close-button');
 const submitButton = popupCard.querySelector('.popup__button');
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
+
 // Функция закрытия открытого popup по клику
 popupList.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
@@ -55,59 +60,49 @@ function closePopupByEscape(event) {
    }
 }
 
-function createCard(item) {
-  const templateElement = template.querySelector('.photo-grid__item').cloneNode(true);
-  const templateLike = templateElement.querySelector('.photo-grid__button');
-  const templateDelite = templateElement.querySelector('.photo-grid__delete');
-  const imageButton = templateElement.querySelector('.photo-grid__image');
-  const cardTitle = templateElement.querySelector('.photo-grid__text');
-  const cardImage = templateElement.querySelector('.photo-grid__image');
-
-    cardImage.src = item.link;
-    cardImage.alt = item.name;
-    cardTitle.textContent = item.name;
-
-    templateLike.addEventListener('click', (evt) => { evt.target.classList.toggle('photo-grid__button_active')});
-    templateDelite.addEventListener('click', (evt) => { evt.target.closest('.photo-grid__item').remove()});
-
-    imageButton.addEventListener('click', () => {
-      popupImageImage.src = item.link;
-      popupImageImage.alt = item.name;
-      popupImageTitle.textContent = item.name;
-      openPopup(popupImage);
-    });
-
-return templateElement;
-};
-
-initialCards.map(function (item) {
-  elementList.append(createCard(item));
-});
-
-
 function handleProfileButton () {
   profileNameInput.value = profileName.textContent;
   profileJobinput.value = profileJob.textContent;
   openPopup(popupProfile);
 }
-
+// Обработчик «отправки» формы
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileJob.textContent = profileJobinput.value;
   closePopup(popupProfile);
 };
-
+//функция отправки формы добавления карточки
 function handleNewCardFormSubmit(evt) {
   evt.preventDefault();
-  const newCard = { name: cardInputName.value, link: cardInputLink.value };
-  elementList.prepend(createCard(newCard));
+  const newCard = new Card(
+    { name: cardInputName.value, link: cardInputLink.value },
+    template);
+  const cardElement = newCard.generateCard();
+  elementList.prepend(cardElement);
   closePopup(popupCard);
   cardInputName.value = "";
   cardInputLink.value = "";
-  submitButton.disabled = true;
-  submitButton.classList.add('popup__button_disabled');
+// Очищаем поля
+  cardAddForm.reset();
+  console.log(submitButton);
+// submitButton.classList.add('popup__button_disabled'); //добавим неактивный класс кнопке "добавить", если инпуты не заполнены - работает при повторном открывании после одного добавления карточки
+ //submitButton.disabled = true; //сделать кнопку "добавить" неактивной
 };
+
+//функция создания карточки
+function handleCardClick(name, link) {
+  popupImageImage.src = link;
+  popupImageImage.alt = name;
+  popupImageTitle.textContent = name;
+  openPopup(popupImage);
+};
+//подгружаем первые карточки
+initialCards.forEach((item) => {
+  const card = new Card(item, template, handleCardClick);
+  const cardElement = card.generateCard();
+  elementList.append(cardElement);
+});
 
 function handleCardButton() {
   openPopup(popupCard);
@@ -125,10 +120,16 @@ buttonImageClose.addEventListener("click", () => {
   closePopup(popupImage);
 });
 
-
 profileButton.addEventListener("click", handleProfileButton);
 buttonOpenPopapCard.addEventListener("click", handleCardButton);
 formProfileElement.addEventListener('submit', handleProfileFormSubmit);
 cardAddForm.addEventListener('submit', handleNewCardFormSubmit);
+
+const formProfileElementValidate = new FormValidator(config, formProfileElement);
+const cardAddFormValidate = new FormValidator(config, cardAddForm);
+formProfileElementValidate.enableValidation();
+cardAddFormValidate.enableValidation();
+
+
 
 
