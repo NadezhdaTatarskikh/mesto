@@ -20,14 +20,12 @@ const popupProfile = document.querySelector('.popup_name_profile')
 const formProfileElement = popupProfile.querySelector('.popup__form_name_profile');
 const profileNameInput = popupProfile.querySelector('.popup__input_text_name');
 const profileJobinput = popupProfile.querySelector('.popup__input_text_job');
-const buttonProfileClose = popupProfile.querySelector('.popup__close-button');
 
 const popupCard = document.querySelector('.popup_name_photo');
 const cardAddForm = popupCard.querySelector('.popup__form_name_photo');
 const cardInputName = popupCard.querySelector('.popup__input_text_title');
 const cardInputLink = popupCard.querySelector('.popup__input_text_link');
 const cardCloseButton = popupCard.querySelector('.popup__close-button');
-const submitButton = popupCard.querySelector('.popup__button');
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
 
@@ -65,6 +63,7 @@ function handleProfileButton () {
   profileJobinput.value = profileJob.textContent;
   openPopup(popupProfile);
 }
+
 // Обработчик «отправки» формы
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -72,22 +71,26 @@ function handleProfileFormSubmit(evt) {
   profileJob.textContent = profileJobinput.value;
   closePopup(popupProfile);
 };
+
+function createCard(item) {
+  const card = new Card(item, template, handleCardClick);
+  const cardElement = card.generateCard();
+  return cardElement
+}
+
 //функция отправки формы добавления карточки
 function handleNewCardFormSubmit(evt) {
   evt.preventDefault();
-  const newCard = new Card(
-    { name: cardInputName.value, link: cardInputLink.value },
-    template);
-  const cardElement = newCard.generateCard();
-  elementList.prepend(cardElement);
+  const data = {};
+    data.name = cardInputName.value;
+    data.link = cardInputLink.value;
+    const newCard = createCard(data);
+    elementList.prepend(newCard);
+  // Очищаем поля
+    cardAddForm.reset();
+  // Делаем кнопку неактивной
+    cardAddFormValidate._toggleButtonState();
   closePopup(popupCard);
-  cardInputName.value = "";
-  cardInputLink.value = "";
-// Очищаем поля
-  cardAddForm.reset();
-  console.log(submitButton);
-// submitButton.classList.add('popup__button_disabled'); //добавим неактивный класс кнопке "добавить", если инпуты не заполнены - работает при повторном открывании после одного добавления карточки
- //submitButton.disabled = true; //сделать кнопку "добавить" неактивной
 };
 
 //функция создания карточки
@@ -97,20 +100,10 @@ function handleCardClick(name, link) {
   popupImageTitle.textContent = name;
   openPopup(popupImage);
 };
-//подгружаем первые карточки
-initialCards.forEach((item) => {
-  const card = new Card(item, template, handleCardClick);
-  const cardElement = card.generateCard();
-  elementList.append(cardElement);
-});
 
 function handleCardButton() {
   openPopup(popupCard);
 }
-
-buttonProfileClose.addEventListener("click", () => {
-  closePopup(popupProfile);
-});
 
 cardCloseButton.addEventListener("click", () => {
   closePopup(popupCard);
@@ -130,6 +123,10 @@ const cardAddFormValidate = new FormValidator(config, cardAddForm);
 formProfileElementValidate.enableValidation();
 cardAddFormValidate.enableValidation();
 
-
+//подгружаем первые карточки
+initialCards.forEach((item) => {
+  const cardElement = createCard(item);
+  elementList.append(cardElement);
+});
 
 
