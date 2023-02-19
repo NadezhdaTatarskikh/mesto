@@ -29,7 +29,27 @@ const cardCloseButton = popupCard.querySelector('.popup__close-button');
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
 
-// Функция закрытия открытого popup по клику
+// Общая функция открытия попапа
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEscape);
+};
+
+//Общая функция закрытия попапа
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByEscape);
+};
+
+//Функция закрытия попапа по нажатию на кнопку "ESC"
+function closePopupByEscape(event) {
+  if (event.key == 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+   }
+};
+
+// Функция закрытия открытого popup по клику по оверлау (обработчики оверлея и крестиков)
 popupList.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
       if (evt.target.classList.contains('popup_opened')) {
@@ -39,58 +59,57 @@ popupList.forEach((popup) => {
         closePopup(popup)
       }
   })
-})
-// Общая функция открытия попапа
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupByEscape);
-};
-//Общая функция закрытия попапа
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupByEscape);
-};
-//Функция закрытия попапа по нажатию на кнопку "ESC"
-function closePopupByEscape(event) {
-  if (event.key == 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-   }
-}
+});
 
+//открыть попап профиля, тут же данные о пользователе
 function handleProfileButton () {
+// Получаем значение полей jobInput и nameInput из свойства value
   profileNameInput.value = profileName.textContent;
   profileJobinput.value = profileJob.textContent;
   openPopup(popupProfile);
-}
-
-// Обработчик «отправки» формы
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = profileNameInput.value;
-  profileJob.textContent = profileJobinput.value;
-  closePopup(popupProfile);
 };
 
-function createCard(item) {
-  const card = new Card(item, template, handleCardClick);
-  const cardElement = card.generateCard();
-  return cardElement
-}
+// Обработчик «отправки» формы через submit
+function handleProfileFormSubmit(evt) {
+  //Отменяем стандартную отправку формы.
+  evt.preventDefault();
+  // Получаем значение полей jobInput и nameInput из свойства value
+  profileName.textContent = profileNameInput.value;
+  profileJob.textContent = profileJobinput.value;
+  // Закрываем попап
+  closePopup(popupProfile);
+};
 
 //функция отправки формы добавления карточки
 function handleNewCardFormSubmit(evt) {
   evt.preventDefault();
-  const data = {};
-    data.name = cardInputName.value;
-    data.link = cardInputLink.value;
-    const newCard = createCard(data);
-    elementList.prepend(newCard);
+  const newCard = {
+    name: cardInputName.value,
+    link: cardInputLink.value,
+  };
+    elementList.prepend(createCard(newCard));
+    closePopup(popupCard);
   // Очищаем поля
-    cardAddForm.reset();
-  // Делаем кнопку неактивной
-    cardAddFormValidate._toggleButtonState();
+  cardInputName.value = "";
+  cardInputLink.value = "";
+  //методы класса FormValidator активируют/деактивируют кнопку сабмита
+  //и очищать ошибки в index.js
+  cardAddFormValidate.hideInputErrors();
+};
+//открыть попап добавления новых карточек
+function handleCardButton() {
+  openPopup(popupCard);
+};
+
+cardCloseButton.addEventListener("click", () => {
   closePopup(popupCard);
+});
+
+// Создаем экземпляр новой карточки
+function createCard(item) {
+  const card = new Card(item, template, handleCardClick);
+  const cardElement = card.generateCard();
+  return cardElement
 };
 
 //функция создания карточки
@@ -101,23 +120,17 @@ function handleCardClick(name, link) {
   openPopup(popupImage);
 };
 
-function handleCardButton() {
-  openPopup(popupCard);
-}
-
-cardCloseButton.addEventListener("click", () => {
-  closePopup(popupCard);
-});
-
 buttonImageClose.addEventListener("click", () => {
   closePopup(popupImage);
 });
 
 profileButton.addEventListener("click", handleProfileButton);
 buttonOpenPopapCard.addEventListener("click", handleCardButton);
+
 formProfileElement.addEventListener('submit', handleProfileFormSubmit);
 cardAddForm.addEventListener('submit', handleNewCardFormSubmit);
 
+//создать экземпляр класса FormValidator
 const formProfileElementValidate = new FormValidator(config, formProfileElement);
 const cardAddFormValidate = new FormValidator(config, cardAddForm);
 formProfileElementValidate.enableValidation();
