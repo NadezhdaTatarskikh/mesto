@@ -14,7 +14,6 @@ const template = document.querySelector('.card-template').content.querySelector(
 const popupImage = document.querySelector('.popup_name_image');
 const popupImageImage = popupImage.querySelector('.popup__image');
 const popupImageTitle = popupImage.querySelector('.popup__image-title');
-const buttonImageClose = popupImage.querySelector('.popup__close-button');
 
 const popupProfile = document.querySelector('.popup_name_profile')
 const formProfileElement = popupProfile.querySelector('.popup__form_name_profile');
@@ -25,7 +24,6 @@ const popupCard = document.querySelector('.popup_name_photo');
 const cardAddForm = popupCard.querySelector('.popup__form_name_photo');
 const cardInputName = popupCard.querySelector('.popup__input_text_title');
 const cardInputLink = popupCard.querySelector('.popup__input_text_link');
-const cardCloseButton = popupCard.querySelector('.popup__close-button');
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
 
@@ -101,17 +99,6 @@ function handleCardButton() {
   openPopup(popupCard);
 };
 
-cardCloseButton.addEventListener("click", () => {
-  closePopup(popupCard);
-});
-
-// Создаем экземпляр новой карточки
-function createCard(item) {
-  const card = new Card(item, template, handleCardClick);
-  const cardElement = card.generateCard();
-  return cardElement
-};
-
 //функция создания карточки
 function handleCardClick(name, link) {
   popupImageImage.src = link;
@@ -120,9 +107,12 @@ function handleCardClick(name, link) {
   openPopup(popupImage);
 };
 
-buttonImageClose.addEventListener("click", () => {
-  closePopup(popupImage);
-});
+// Создаем экземпляр новой карточки
+function createCard(item) {
+  const card = new Card(item, template, handleCardClick);
+  const cardElement = card.generateCard();
+  return cardElement
+};
 
 profileButton.addEventListener("click", handleProfileButton);
 buttonOpenPopapCard.addEventListener("click", handleCardButton);
