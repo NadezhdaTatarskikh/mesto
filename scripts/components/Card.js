@@ -1,8 +1,8 @@
 export class Card {
   constructor(data, templateSelector, handleCardClick) {
-    this._name = data.name;
-    this._link = data.link;
-    this._handleCardClick = handleCardClick;
+    this.name = data.name;
+    this.link = data.link;
+    this._handleCardClick =  handleCardClick;
     this._templateSelector = templateSelector;
   }
    //копируем разметку
@@ -19,7 +19,7 @@ _setEventListeners() {
    this._deliteCard.addEventListener('click', () => this._handleCardDelete());
   //клик по карточке
     this._cardImage.addEventListener('click', () => {
-      this._handleCardClick(this._name, this._link);
+      this._handleCardClick({ name: this.name, link: this.link });
     });
   }
 
@@ -41,13 +41,12 @@ generateCard() {
   this._cardImage = this._element.querySelector('.photo-grid__image');
   this._cardName = this._element.querySelector('.photo-grid__text');
   //присваиваем значения
-      this._cardImage.alt = this._name;
-      this._cardImage.src = this._link;
-      this._cardName.textContent = this._name;
+      this._cardImage.alt = this.name;
+      this._cardImage.src = this.link;
+      this._cardName.textContent = this.name;
   //навешиваем события
       this._setEventListeners();
   //возвращаем готовую карточку
       return this._element;
     }
   }
-
