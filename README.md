@@ -1,4 +1,4 @@
-# Проектная работа №7: "Место".
+# Проектная работа № 4-5-6-7-8: "Место".
 
 ### Учебный проект от Яндекс.Практикум
 
@@ -23,13 +23,19 @@
 
 ## Стек технологий:
 
-* HTML5;
+* HTML5:
+  * Семантические теги;
 * CSS3:
-* Flexbox;
-* Grid Layout;
+  * Flexbox;
+  * Grid Layout;
+* JavaScript:
+  * ООП;
+  * Формы находятся в модульном окне;
+  * Валидация форм;
+  * Webpack
 * Методология БЭМ;
 * Файловая структура Nested БЭМ;
-* JavaScript:
+* Подключение шрифтов @font-face;
 
 ## Языки:
 
@@ -45,8 +51,9 @@
 
 ## Чек лист:
 
-[Чек лист](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-7.pdf)
+[Чек лист]( https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-8.pdf)
 
 ## Доработать:
 
 В дальнейшем данная работа будет продолжена, согласно учебного плана.
+

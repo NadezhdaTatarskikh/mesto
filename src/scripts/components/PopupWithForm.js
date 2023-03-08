@@ -6,7 +6,7 @@ export class PopupWithForm extends Popup {
     this._handleSubmitForm = handleSubmitForm;
     this._form = this._popup.querySelector('.popup__form');
     this._submitButton = this._popup.querySelector('.popup__button');
-    this._inputList = this._popup.querySelector('.popup__input');
+    this._inputList = this._popup.querySelectorAll('.popup__input');
   }
   // собирает данные всех полей формы.
     _getInputValues() {
@@ -14,14 +14,14 @@ export class PopupWithForm extends Popup {
       this._formValues = {};
   // добавляем в этот объект значения всех полей
       this._inputList.forEach((input) => {
-      this._formValues[input.name] = input.value;
+        this._formValues[input.name] = input.value;
     });
   // возвращаем объект значений
     return this._formValues;
   }
 
   // функция, параметром которой, является колбэк на удаление карточки
-    _setEventListeners() {
+    setEventListeners() {
       super.setEventListeners();
       this._form.addEventListener('submit', (evt) => {
         evt.preventDefault();

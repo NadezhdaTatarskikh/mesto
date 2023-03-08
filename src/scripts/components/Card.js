@@ -7,9 +7,11 @@ export class Card {
   }
    //копируем разметку
   _getTemplate() {
-    const cardElement = this._templateSelector.cloneNode(true);
+    const cardElement = document.querySelector(this._templateSelector).content.querySelector('.photo-grid__item').cloneNode(true);
     return cardElement; //вернёт клонированный элемент
   }
+
+
 
 //метод добавления всех обработчиков
 _setEventListeners() {

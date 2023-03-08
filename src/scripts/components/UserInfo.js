@@ -1,19 +1,19 @@
 export class UserInfo {
-  constructor({ name, job }) {
-    this._name = document.querySelector(name);
-    this._job = document.querySelector(job);
+  constructor({ userName, userJob }) {
+    this._userName = document.querySelector(userName);
+    this._userJob = document.querySelector(userJob);
   }
 //публичный метод возвращает объект с данными пользователя
  getUserInfo() {
   const userInfo = {
-      name: this._name.textContent,
-      job: this._job.textContent,
+      userName: this._userName.textContent,
+      userJob: this._userJob.textContent,
     }
     return userInfo;
  }
 //публичный метод, принимает новые данные пользователя и добавляет их на страницу
- setUserInfo(name, job) {
-    this._name.textContent = name;
-    this._job.textContent = job;
+ setUserInfo({ name, job }) {
+    this._userName.textContent = name;
+    this._userJob.textContent = job;
   }
 }

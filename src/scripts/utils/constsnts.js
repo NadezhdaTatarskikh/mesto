@@ -35,41 +35,37 @@ const config = {
 };
 
 
-const profileNameSelector = '.profile__name';
-const profileJobSelector = '.profile__job';
-const profileButton = '.profile__edit';
-const buttonOpenPopapCard = '.profile__add-button';
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__job');
+const buttonOpenPopupProfile = document.querySelector('.profile__edit');
+const buttonOpenPopupCard = document.querySelector('.profile__add-button');
 
 const elementList = '.photo-grid';
-const template = document.querySelector('.card-template').content.querySelector('.photo-grid__item');
 
-const popupImageSelector = '.popup_name_image';
-const popupImageImage = '.popup__image';
-const popupImageTitle = '.popup__image-title';
+const popupImage = document.querySelector('.popup_name_image');
+const popupImageImage = document.querySelector('.popup__image');
+const popupImageTitle = document.querySelector('.popup__image-title');
 
-const popupProfileSelector = '.popup_name_profile';
-const formProfileElement = '.popup__form_name_profile';
-const profileNameInput = '.popup__input_text_name';
-const profileJobInput = '.popup__input_text_job';
+const popupProfile = document.querySelector('.popup_name_profile');
+const formProfileElement = document.querySelector('.popup__form_name_profile');
+const profileNameInput = document.querySelector('.popup__input_text_name');
+const profileJobInput = document.querySelector('.popup__input_text_job');
 
-const popupCard = '.popup_name_photo';
-const cardAddForm = '.popup__form_name_photo';
-const cardInputName = '.popup__input_text_title';
-const cardInputLink = '.popup__input_text_link';
-
-const popupList = Array.from(document.querySelectorAll('.popup'));
+const popupCard = document.querySelector('.popup_name_photo');
+const cardAddForm = document.querySelector('.popup__form_name_photo');
+const cardInputName = document.querySelector('.popup__input_text_title');
+const cardInputLink = document.querySelector('.popup__input_text_link');
 
 export {
   initialCards,
   config,
-  profileButton,
-  buttonOpenPopapCard,
+  buttonOpenPopupProfile,
+  buttonOpenPopupCard,
   elementList,
-  template,
-  popupImageSelector,
+  popupImage,
   popupImageImage,
   popupImageTitle,
-  popupProfileSelector,
+  popupProfile,
   formProfileElement,
   profileNameInput,
   profileJobInput,
@@ -77,7 +73,6 @@ export {
   cardAddForm,
   cardInputName,
   cardInputLink,
-  popupList,
-  profileNameSelector,
-  profileJobSelector,
+  profileName,
+  profileJob
 };
