@@ -1,3 +1,5 @@
+'use strict'
+
 import Popup from "./Popup.js";
 
 export class PopupWithForm extends Popup {
@@ -27,11 +29,19 @@ export class PopupWithForm extends Popup {
         evt.preventDefault();
     // добавим вызов функции _handleFormSubmit
     // передадим ей объект — результат работы _getInputValues
-      this._handleSubmitForm(this._getInputValues());
+      this._handleSubmitForm(this._getInputValues())
     });
   }
     close() {
       super.close();
       this._form.reset();
+    }
+    //отображаем, что идет загрузка
+    loading(isLoading) {
+      if (isLoading) {
+        this._submitButton.textContent = 'Сохранение...';
+      } else {
+        this._submitButton.textContent = 'Сохранить';
+      }
     }
 }

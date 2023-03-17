@@ -13,7 +13,10 @@
   </header>
   <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/image.jpg')%>" alt="Фотография профиля">
+        <div class="profile__container-avatar">
+          <button type="button" aria-label="Кнопка редактировать аватара" class="profile__btn-avatar"></button>
+          <img class="profile__avatar" src="<%=require('./images/image.jpg')%>" alt="Фотография профиля">
+        </div>
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button class="profile__edit" type="button" name="addEdit" aria-label="Кнопка редактировать профиль"></button>
@@ -65,6 +68,29 @@
       <h2 class="popup__image-title">test</h2>
     </div>
   </div>
+  <!-- Попап удаления карточки -->
+  <div class="popup popup_delete-card">
+    <div class="popup__container">
+      <button class="popup__close-button" type="button" aria-label="Кнопка закрыть"></button>
+      <h3 class="popup__header">Вы уверены?</h3>
+      <form action="#" method="post" class="popup__form popup_delete-card " name="delete-card" novalidate>
+        <button type="submit" class="popup__button" aria-label="Да">Да</button>
+     </form>
+    </div>
+  </div>
+  <!-- Попап редактирования аватара пользователя -->
+  <div class="popup popup_edit-avatar">
+    <div class="popup__container">
+      <button class="popup__close-button" type="button" aria-label="Кнопка закрыть"></button>
+      <h3 class="popup__header">Обновить аватар</h3>
+      <form action="#" method="post" class="popup__form popup_edit-avatar" name="edit-avatar" novalidate>
+        <input type="url" class="popup__input popup__input_edit-avatar" name="avatar" placeholder="Ссылка на аватар"
+        required minlength="2" maxlength="30" id="avatar">
+    <span class="popup__error-text profile__avatar-input-error"></span>
+        <button type="submit" class="popup__button" aria-label="Да">Да</button>
+     </form>
+    </div>
+  </div>
   <template class="card-template">
     #document-fragment
     <li class="photo-grid__item">
@@ -72,7 +98,10 @@
       <img class="photo-grid__image" alt="Изображение места">
       <div class="photo-grid__option">
         <h2 class="photo-grid__text"></h2>
-        <button class="photo-grid__button" type="button" name="addLike" aria-label="Кнопка нравится"></button>
+        <div class="photo-grid__like-container">
+          <button class="photo-grid__button" type="button" name="addLike" aria-label="Кнопка нравится"></button>
+          <span class="photo-grid__like">0</span>
+        </div>
       </div>
     </li>
     </template>

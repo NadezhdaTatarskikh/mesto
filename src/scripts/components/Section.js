@@ -1,3 +1,5 @@
+'use strict'
+
 // создаём класс, который отвечает за отрисовку элементов на странице
 export class Section {
   constructor({ items, renderer }, containerSelector) {

@@ -1,29 +1,5 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+'use strict'
+
 // Конф. валидации
 const config = {
   formSelector: '.popup__form',
@@ -39,6 +15,7 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const buttonOpenPopupProfile = document.querySelector('.profile__edit');
 const buttonOpenPopupCard = document.querySelector('.profile__add-button');
+const buttonOpenPopupAvatar = document.querySelector('.profile__btn-avatar')
 
 const elementList = '.photo-grid';
 
@@ -56,8 +33,9 @@ const cardAddForm = document.querySelector('.popup__form_name_photo');
 const cardInputName = document.querySelector('.popup__input_text_title');
 const cardInputLink = document.querySelector('.popup__input_text_link');
 
+const formEditAvatar = document.querySelector('.popup__form popup_edit-avatar');
+
 export {
-  initialCards,
   config,
   buttonOpenPopupProfile,
   buttonOpenPopupCard,
@@ -74,5 +52,7 @@ export {
   cardInputName,
   cardInputLink,
   profileName,
-  profileJob
+  profileJob,
+  buttonOpenPopupAvatar,
+  formEditAvatar
 };

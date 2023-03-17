@@ -1,19 +1,27 @@
+'use strict'
+
 export class UserInfo {
-  constructor({ userName, userJob }) {
+  constructor({ userName, userJob, avatar }) {
     this._userName = document.querySelector(userName);
     this._userJob = document.querySelector(userJob);
+    this._avatar = document.querySelector(avatar);
   }
 //публичный метод возвращает объект с данными пользователя
  getUserInfo() {
   const userInfo = {
       userName: this._userName.textContent,
       userJob: this._userJob.textContent,
+      avatar: this._avatar.src
     }
     return userInfo;
  }
 //публичный метод, принимает новые данные пользователя и добавляет их на страницу
- setUserInfo({ name, job }) {
-    this._userName.textContent = name;
-    this._userJob.textContent = job;
+ setUserInfo(data) {
+    this._userName.textContent = date.name;
+    this._userJob.textContent = date.job;
+    this._avatar.src = data.avatar;
   }
+  getUserId() {
+    return this._id;
+ }
 }

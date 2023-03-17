@@ -5,7 +5,6 @@
     border: none;
     cursor: pointer;
     background-color: transparent;
-    margin-right: 20px;
     transition: opacity 0.3s ease-in-out;
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,5 +16,5 @@
     opacity: 0.5;
   }
 
-  
+
 

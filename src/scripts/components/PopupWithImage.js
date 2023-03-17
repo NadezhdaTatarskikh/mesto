@@ -1,3 +1,5 @@
+'use strict'
+
 import Popup from "./Popup.js";
 
 export class PopupWithImage extends Popup {
@@ -7,10 +9,10 @@ export class PopupWithImage extends Popup {
     this._image = this._popup.querySelector('.popup__image');
    }
 
-   open(name, link)  {
-      this._image.src = link;
-      this._title.textContent = name;
-      this._image.alt = name;
+   open(data)  {
+      this._image.src = data.link;
+      this._title.textContent = data.name;
+      this._image.alt = data.name;
       super.open();
    }
 }
