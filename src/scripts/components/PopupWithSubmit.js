@@ -10,7 +10,7 @@ export class PopupWithSubmit extends Popup {
 
     // функция, параметром которой, является колбэк на удаление карточки
       setSubmitForm(action) {
-        this._handleSubmitForm = action;
+        this._handleSubmit = action;
       }
 
       setEventListeners() {
@@ -18,7 +18,7 @@ export class PopupWithSubmit extends Popup {
         this._form.addEventListener('submit', (evt) => {
           evt.preventDefault();
       // добавим вызов функции _handleFormSubmit
-        this._handleSubmitForm();
+        this._handleSubmit();
       });
     }
 }

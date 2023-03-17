@@ -21,7 +21,4 @@ export class UserInfo {
     this._userJob.textContent = date.job;
     this._avatar.src = data.avatar;
   }
-  getUserId() {
-    return this._id;
- }
 }

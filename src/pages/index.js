@@ -1,5 +1,8 @@
 'use strict'
 
+// импорт главного файла стилей
+import "../pages/index.css";
+
 import {
   config,
   buttonOpenPopupProfile,
@@ -30,8 +33,6 @@ import { UserInfo } from "../scripts/components/UserInfo.js";
 import { PopupWithSubmit } from "../scripts/components/PopupWithSubmit.js";
 import { Api } from "../scripts/components/Api.js";
 
-import "../pages/index.css"; // импорт главного файла стилей
-
 // api
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-61',
@@ -59,13 +60,6 @@ popupWithImage.setEventListeners();
 const popupWithSubmit = new PopupWithSubmit('.popup_delete-card');
 popupWithSubmit.setEventListeners();
 
-//функция, которая заносит информацию в инпуты профиля
-function addUserInfoForm({ userName, userJob }) {
-  //Получаем значение полей jobInput и nameInput из свойства value
-    profileNameInput.value = userName;
-    profileJobInput.value = userJob;
-  };
-
 //экземпляр UserInfo с селекторами профиля
 const userInfo = new UserInfo({
   userName: '.profile__name',
@@ -73,14 +67,31 @@ const userInfo = new UserInfo({
   avatar: '.profile__avatar',
 });
 
+
+//функция, которая заносит информацию в инпуты профиля
+function addUserInfoForm({ userName, userJob }) {
+  //Получаем значение полей jobInput и nameInput из свойства value
+    profileNameInput.value = userName;
+    profileJobInput.value = userJob;
+  };
+
+//функция открытия попапа профиля и занесения  информации в инпуты
+buttonOpenPopupProfile.addEventListener('click', () => {
+  const info = userInfo.getUserInfo();
+  addUserInfoForm({
+    userName: info.userName,
+    userJob: info.userJob,
+  });
+  editProfilePopup.open();
+});
+
 // попап редактирования профиля
 const editProfilePopup = new PopupWithForm({
   popupSelector: '.popup_name_profile',
-  handleFormSubmit: (data) => {
+  handleSubmitForm: (data) => {
     editProfilePopup.loading(true);
-    api.updateUserInfo(data)
+    api.editUserInfo(data)
       .then((data) => {
-        console.log(data);
         userInfo.setUserInfo(data);
         editProfilePopup.close();
       })
@@ -94,16 +105,6 @@ const editProfilePopup = new PopupWithForm({
 });
 
 editProfilePopup.setEventListeners();
-
-//функция открытия попапа профиля и занесения  информации в инпуты
-buttonOpenPopupProfile.addEventListener('click', () => {
-  const info = userInfo.getUserInfo();
-  addUserInfoForm({
-    userName: info.userName,
-    userJob: info.userJob,
-  });
-  editProfilePopup.open();
-});
 
 //создание попапа редактирования аватара
 const editAvatarPopup = new PopupWithForm({
@@ -140,11 +141,11 @@ const createCard = (data) => {
     },
     handleCardDelete: () => {
       popupWithSubmit.open();
-      popupWithSubmit.setSubmitAction(() => {
-        api.handleCardDelete(card.getId())
+      popupWithSubmit.setSubmitForm(() => {
+        api.deleteCard(card.getId())
           .then(() => {
-            card.handleCardDelete();
-            handleCardDelete.close();
+            card.deleteCard();
+            popupWithSubmit.close();
           })
           .catch((err) => {
             console.log(`Ошибка: ${err}`);
@@ -152,7 +153,7 @@ const createCard = (data) => {
       });
     },
     handleAddLike: () => {
-      api.addLike(card.getId())
+      api.setLikeCard(card.getId())
         .then((data) => {
           card.handleCardLike(data);
         })
@@ -174,9 +175,9 @@ const createCard = (data) => {
 }
 
 // Создание экземпляра класса Section
-const cardList = new Section ({
-  renderer: (card) => {
-    cardList.addCardAppend(createCard(card));
+const cardsList = new Section ({
+  renderer: (item) => {
+    cardsList.addCardAppend(createCard(item));
   },
 }, '.photo-grid' );
 
@@ -186,18 +187,18 @@ const editCardPopup = new PopupWithForm({
   handleSubmitForm: (data) => {
     editCardPopup.loading(true);
     api.newCardElement(data)
-    .then((data) => {
-      cardList.addCardAppend(createCard(data))
-      editCardPopup.close()
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    })
-    .finally(() => {
-      editCardPopup.loading(false);
-    })
-  }
-})
+      .then((data) => {
+        cardsList.addItem(createCard(data))
+        editCardPopup.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        editCardPopup.loading(false);
+      })
+    }
+  })
 
 editCardPopup.setEventListeners();
 

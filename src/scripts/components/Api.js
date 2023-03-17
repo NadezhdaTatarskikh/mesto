@@ -8,24 +8,23 @@ export class Api {
 
   //проверяем ответ с сервера
     _checkResponse(res) {
-      {
          if (res.ok) {
             return res.json();
          }
+          // если ошибка, отклоняем промис
          return Promise.reject(`Ошибка: ${res.status}`)
-      }
-   }
+        }
 
   // Получаем карточеки с сервера
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
        headers: this._headers
     })
-       .then(this._checkResponse)
+    .then(this._checkResponse);
  }
 
   // Добавим новую карточку
-  addNewCard(data) {
+  newCardElement(data) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: this._headers,
@@ -34,7 +33,7 @@ export class Api {
         link: data.link
       })
     })
-    .then(this._checkResponse)
+    .then(this._checkResponse);
   }
 
   // Удаление карточки
@@ -43,7 +42,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(this._checkResponse)
+    .then(this._checkResponse);
   }
 
   // Получаем информацию о пользователе с сервера
@@ -51,20 +50,20 @@ export class Api {
     return fetch(`${this._url}/users/me`, {
       headers: this._headers
     })
-    .then(this._checkResponse)
+    .then(this._checkResponse);
   }
 
   // Обновляем информацию о пользователе с сервера
-  updateUserInfo(data) {
+  editUserInfo(data) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        about: data.job
+        job: data.job
       })
     })
-    .then(this._checkResponse)
+    .then(this._checkResponse);
   }
   // Редактирование аватара пользователя
   updateAvatar(data) {
@@ -75,7 +74,7 @@ export class Api {
         avatar: data.avatar
       })
     })
-    .then(this._checkResponse)
+    .then(this._checkResponse);
   }
   // Ставим лайк карточке
   setLikeCard(_id) {
@@ -83,7 +82,7 @@ export class Api {
       method: 'PUT',
       headers: this._headers
       })
-      .then(this._checkResponse)
+      .then(this._checkResponse);
   }
 
   // Удаляем лайк
@@ -92,6 +91,6 @@ export class Api {
       method: 'DELETE',
       headers: this._headers
    })
-      .then(this._checkResponse)
+   .then(this._checkResponse);
   }
 }

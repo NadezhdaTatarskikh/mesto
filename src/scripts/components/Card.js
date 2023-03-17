@@ -14,10 +14,6 @@ export class Card {
     this._templateSelector = templateSelector;
   }
 
-  getCardId() {
-    return this._id;
-  }
-
    //копируем разметку
   _getTemplate() {
     const cardElement = document.querySelector(this._templateSelector).content.querySelector('.photo-grid__item').cloneNode(true);

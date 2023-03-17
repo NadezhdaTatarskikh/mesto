@@ -45,6 +45,12 @@ export class FormValidator {
       return !inputElement.validity.valid;
     });
   };
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
+       this._hideInputError(inputElement)
+    });
+ }
 
 // Вызываем функцию toggleButtonState - добавляем/убираем активацию кнопки
   _toggleButtonState () {
@@ -59,7 +65,6 @@ export class FormValidator {
 
 // Функция setEventListeners
   _setEventListeners() {
-    this._toggleButtonState();
  // проверяем состояние кнопки в самом начале
     this._inputList.forEach((inputElement) => {
      // валидируем при изменении полей
@@ -67,6 +72,7 @@ export class FormValidator {
         this._isValid(inputElement);
         this._toggleButtonState();
       });
+      this._toggleButtonState();
     });
   };
 
