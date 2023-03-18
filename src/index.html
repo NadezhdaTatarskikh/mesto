@@ -74,7 +74,7 @@
       <button class="popup__close-button" type="button" aria-label="Кнопка закрыть"></button>
       <h3 class="popup__header">Вы уверены?</h3>
       <form action="#" method="post" class="popup__form popup_delete-card " name="delete-card" novalidate>
-        <button type="submit" class="popup__button" aria-label="Да">Да</button>
+        <button type="submit" class="popup__button" aria-label="Да" disabled="disabled">Да</button>
      </form>
     </div>
   </div>
@@ -83,11 +83,11 @@
     <div class="popup__container">
       <button class="popup__close-button" type="button" aria-label="Кнопка закрыть"></button>
       <h3 class="popup__header">Обновить аватар</h3>
-      <form action="#" method="post" class="popup__form popup_edit-avatar" name="edit-avatar" novalidate>
-        <input type="url" class="popup__input popup__input_edit-avatar" name="avatar" placeholder="Ссылка на аватар"
-        required minlength="2" maxlength="30" id="avatar">
-    <span class="popup__error-text profile__avatar-input-error"></span>
-        <button type="submit" class="popup__button" aria-label="Да">Да</button>
+      <form action="#" method="post" class="popup__form popup__form_edit_avatar" name="edit-avatar" novalidate>
+        <input type="url" class="popup__input popup__input_edit_avatar" name="avatar" placeholder="Ссылка на аватар"
+          required minlength="2" maxlength="30" id="avatar">
+        <span class="popup__error-text avatar-url-input-error"></span>
+        <button type="submit" class="popup__button" aria-label="Сохранить" disabled="disabled">Сохранить</button>
      </form>
     </div>
   </div>

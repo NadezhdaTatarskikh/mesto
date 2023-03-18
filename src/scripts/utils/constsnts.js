@@ -10,12 +10,11 @@ const config = {
   errorClass: 'popup__error-text_active',
 };
 
-
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const buttonOpenPopupProfile = document.querySelector('.profile__edit');
 const buttonOpenPopupCard = document.querySelector('.profile__add-button');
-const buttonOpenPopupAvatar = document.querySelector('.profile__btn-avatar')
+
 
 const elementList = '.photo-grid';
 
@@ -33,7 +32,11 @@ const cardAddForm = document.querySelector('.popup__form_name_photo');
 const cardInputName = document.querySelector('.popup__input_text_title');
 const cardInputLink = document.querySelector('.popup__input_text_link');
 
-const formEditAvatar = document.querySelector('.popup__form popup_edit-avatar');
+//попап редактирования аватара
+const popupAvatar = document.querySelector('.popup_edit-avatar');
+const formEditAvatar = popupAvatar.querySelector('.popup__form');
+const buttonOpenPopupAvatar = document.querySelector('.profile__btn-avatar')
+const avatar = document.querySelector('.popup__form_edit_avatar')
 
 export {
   config,
@@ -54,5 +57,7 @@ export {
   profileName,
   profileJob,
   buttonOpenPopupAvatar,
-  formEditAvatar
+  formEditAvatar,
+  avatar,
+  popupAvatar
 };

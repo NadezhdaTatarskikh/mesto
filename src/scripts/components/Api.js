@@ -8,12 +8,14 @@ export class Api {
 
   //проверяем ответ с сервера
     _checkResponse(res) {
+      {
          if (res.ok) {
             return res.json();
          }
           // если ошибка, отклоняем промис
          return Promise.reject(`Ошибка: ${res.status}`)
         }
+      }
 
   // Получаем карточеки с сервера
   getInitialCards() {
@@ -59,14 +61,14 @@ export class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: data.name,
-        job: data.job
+        name: data.userName,
+        about: data.userJob
       })
     })
     .then(this._checkResponse);
   }
   // Редактирование аватара пользователя
-  updateAvatar(data) {
+  editAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,

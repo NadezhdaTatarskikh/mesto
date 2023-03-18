@@ -65,7 +65,7 @@ _setEventListeners() {
    this._deliteCard.addEventListener('click', () => this._handleCardDelete());
   //клик по карточке
     this._cardImage.addEventListener('click', () => {
-      this._handleCardClick();
+      this._handleCardClick(this._name, this._link);;
     });
   }
 

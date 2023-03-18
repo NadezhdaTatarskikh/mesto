@@ -1,5 +1,3 @@
-'use strict'
-
 // импорт главного файла стилей
 import "../pages/index.css";
 
@@ -7,7 +5,6 @@ import {
   config,
   buttonOpenPopupProfile,
   buttonOpenPopupCard,
-  buttonOpenPopupAvatar,
   elementList,
   popupImage,
   popupImageImage,
@@ -22,7 +19,10 @@ import {
   cardInputLink,
   profileName,
   profileJob,
-  formEditAvatar
+  buttonOpenPopupAvatar,
+  formEditAvatar,
+  avatar,
+  popupAvatar
 } from "../scripts/utils/constsnts.js";
 import { Card } from "../scripts/components/Card.js";
 import { FormValidator } from "../scripts/components/FormValidator.js";
@@ -67,7 +67,6 @@ const userInfo = new UserInfo({
   avatar: '.profile__avatar',
 });
 
-
 //функция, которая заносит информацию в инпуты профиля
 function addUserInfoForm({ userName, userJob }) {
   //Получаем значение полей jobInput и nameInput из свойства value
@@ -111,7 +110,7 @@ const editAvatarPopup = new PopupWithForm({
   popupSelector: '.popup_edit-avatar',
   handleSubmitForm: (data) => {
     editAvatarPopup.loading(true);
-    api.updateAvatar(data)
+    api.editAvatar(data)
       .then((data) => {
         avatar.src = data.avatar;
         editAvatarPopup.close();
@@ -128,6 +127,7 @@ editAvatarPopup.setEventListeners();
 
 //функция открытия попапа редактирования аватара
 buttonOpenPopupAvatar.addEventListener('click', () => {
+  formEditAvatarValidate.resetValidation();
   editAvatarPopup.open();
 })
 
@@ -135,9 +135,9 @@ buttonOpenPopupAvatar.addEventListener('click', () => {
 const createCard = (data) => {
   const card = new Card({
     data: data,
-    userId: userInfo.getUserId(),
-    handleCardClick: () => {
-      popupWithImage.open(data);
+    userId: userId,
+    handleCardClick: (name, link) => {
+      popupWithImage.open(name, link);
     },
     handleCardDelete: () => {
       popupWithSubmit.open();
@@ -179,7 +179,7 @@ const cardsList = new Section ({
   renderer: (item) => {
     cardsList.addCardAppend(createCard(item));
   },
-}, '.photo-grid' );
+}, '.photo-grid');
 
 // Добавляем новую карточку
 const editCardPopup = new PopupWithForm({
@@ -204,7 +204,7 @@ editCardPopup.setEventListeners();
 
 // слушатель кнопки открытия попапа добавления новой карточки
 buttonOpenPopupCard.addEventListener('click', () => {
-  cardAddFormValidate.hideInputErrors();
+  cardAddFormValidate.resetValidation();
   editCardPopup.open();
 });
 
