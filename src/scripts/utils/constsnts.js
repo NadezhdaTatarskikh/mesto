@@ -34,9 +34,9 @@ const cardInputLink = document.querySelector('.popup__input_text_link');
 
 //попап редактирования аватара
 const popupAvatar = document.querySelector('.popup_edit-avatar');
-const formEditAvatar = popupAvatar.querySelector('.popup__form');
-const buttonOpenPopupAvatar = document.querySelector('.profile__btn-avatar')
-const avatar = document.querySelector('.popup__form_edit_avatar')
+const formEditAvatar = popupAvatar.querySelector('.popup__form_edit_avatar');
+const buttonOpenPopupAvatar = document.querySelector('.profile__btn-avatar');
+const avatar = document.querySelector('.profile__avatar');
 
 export {
   config,

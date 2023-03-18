@@ -42,10 +42,21 @@ const api = new Api({
   }
 });
 
+api.getInitialCards()
+.then((res) => {
+  console.log(res);
+})
+.catch((err) => {
+  console.log(err)
+})
+
+let userId = "";
+
 // Загрузка готовых карточек и данных о пользователе с сервера
 Promise.all([api.getInitialCards(), api.getUserInfo()])
 .then(([initialCards, userData]) => {
   userInfo.setUserInfo(userData);
+  userId = userData._id;
   cardsList.renderItems(initialCards);
 })
 .catch((err) => {
@@ -127,7 +138,6 @@ editAvatarPopup.setEventListeners();
 
 //функция открытия попапа редактирования аватара
 buttonOpenPopupAvatar.addEventListener('click', () => {
-  formEditAvatarValidate.resetValidation();
   editAvatarPopup.open();
 })
 
@@ -136,8 +146,8 @@ const createCard = (data) => {
   const card = new Card({
     data: data,
     userId: userId,
-    handleCardClick: (name, link) => {
-      popupWithImage.open(name, link);
+    handleCardClick: () => {
+      popupWithImage.open(data);
     },
     handleCardDelete: () => {
       popupWithSubmit.open();
@@ -161,7 +171,7 @@ const createCard = (data) => {
           console.log(`Ошибка: ${err}`);
         });
     },
-    handleCardLike: () => {
+    handleLikeDelite: () => {
       api.deleteLike(card.getId())
         .then((data) => {
           card.handleCardLike(data);
@@ -170,14 +180,14 @@ const createCard = (data) => {
           console.log(`Ошибка: ${err}`);
         });
     }
-  }, '.template');
+  }, '.card-template');
   return card.generateCard();
 }
 
 // Создание экземпляра класса Section
 const cardsList = new Section ({
   renderer: (item) => {
-    cardsList.addCardAppend(createCard(item));
+    cardsList.addItem(createCard(item));
   },
 }, '.photo-grid');
 

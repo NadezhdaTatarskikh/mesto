@@ -39,7 +39,7 @@ export class Api {
   }
 
   // Удаление карточки
-  delitCard(_id) {
+  deleteCard(_id) {
     return fetch(`${this._url}/cards/${_id}`, {
       method: 'DELETE',
       headers: this._headers
@@ -88,7 +88,7 @@ export class Api {
   }
 
   // Удаляем лайк
-  delitLike(_id) {
+  deleteLike(_id) {
     return fetch(`${this._url}/cards/${_id}/likes`, {
       method: 'DELETE',
       headers: this._headers
