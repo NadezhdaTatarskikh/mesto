@@ -18,7 +18,7 @@ export class UserInfo {
 //публичный метод, принимает новые данные пользователя и добавляет их на страницу
  setUserInfo(data) {
     this._userName.textContent = data.name;
-    this._userJob.textContent = data.job;
+    this._userJob.textContent = data.about;
     this._avatar.src = data.avatar;
     this._id = data._id;
   }

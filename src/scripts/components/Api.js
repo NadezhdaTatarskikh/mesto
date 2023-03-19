@@ -24,6 +24,38 @@ export class Api {
     })
     .then(res => this._checkResponse(res));
  }
+// Получаем информацию о пользователе с сервера
+getUserInfo() {
+  return fetch(`${this._url}/users/me`, {
+    headers: this._headers
+  })
+  .then(res => this._checkResponse(res));
+}
+
+// Обновляем информацию о пользователе с сервера
+editUserInfo(data) {
+  return fetch(`${this._url}/users/me`, {
+    method: 'PATCH',
+    headers: this._headers,
+    body: JSON.stringify({
+      name: data.userName,
+      about: data.userJob
+    })
+  })
+  .then(res => this._checkResponse(res));
+}
+
+// Редактирование аватара пользователя
+editAvatar(data) {
+  return fetch(`${this._url}/users/me/avatar`, {
+    method: 'PATCH',
+    headers: this._headers,
+    body: JSON.stringify({
+      avatar: data.avatar
+    })
+  })
+  .then(res => this._checkResponse(res));
+}
 
   // Добавим новую карточку
   newCardElement(data) {
@@ -47,37 +79,6 @@ export class Api {
     .then(res => this._checkResponse(res));
   }
 
-  // Получаем информацию о пользователе с сервера
-  getUserInfo() {
-    return fetch(`${this._url}/users/me`, {
-      headers: this._headers
-    })
-    .then(res => this._checkResponse(res));
-  }
-
-  // Обновляем информацию о пользователе с сервера
-  editUserInfo(data) {
-    return fetch(`${this._url}/users/me`, {
-      method: 'PATCH',
-      headers: this._headers,
-      body: JSON.stringify({
-        name: data.userName,
-        job: data.userJob
-      })
-    })
-    .then(res => this._checkResponse(res));
-  }
-  // Редактирование аватара пользователя
-  editAvatar(data) {
-    return fetch(`${this._url}/users/me/avatar`, {
-      method: 'PATCH',
-      headers: this._headers,
-      body: JSON.stringify({
-        avatar: data.avatar
-      })
-    })
-    .then(res => this._checkResponse(res));
-  }
   // Ставим лайк карточке
   setLikeCard(_id) {
     return fetch(`${this._url}/cards/${_id}/likes`, {

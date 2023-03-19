@@ -7,7 +7,7 @@ const config = {
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_error',
-  errorClass: 'popup__error-text_active',
+  inputErrorActive: 'popup__error-text_active',
 };
 
 const profileName = document.querySelector('.profile__name');

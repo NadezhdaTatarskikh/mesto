@@ -127,7 +127,7 @@ const editAvatarPopup = new PopupWithForm({
       .finally(() => {
         editAvatarPopup.loading(false);
       });
-  }
+    }
 });
 editAvatarPopup.setEventListeners();
 
@@ -140,7 +140,7 @@ buttonOpenPopupAvatar.addEventListener('click', () => {
 const createCard = (data) => {
   const card = new Card({
     data: data,
-    userId: userId,
+    userId: userInfo.getUserId(),
     handleCardClick: (name, link) => {
       popupWithImage.open(name, link);
     },

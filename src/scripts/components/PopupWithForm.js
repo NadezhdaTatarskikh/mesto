@@ -28,8 +28,8 @@ export class PopupWithForm extends Popup {
     this._form.addEventListener('submit', (evt) => {
        evt.preventDefault();
        // добавим вызов функции _handleFormSubmit, передадим ей объект — результат работы _getInputValues
-       this._handleSubmitForm(this._getInputValues())
-      })
+       this._handleSubmitForm(this._getInputValues());
+      });
    }
 
       close() {
