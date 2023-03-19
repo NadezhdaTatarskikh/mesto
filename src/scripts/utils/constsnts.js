@@ -15,7 +15,6 @@ const profileJob = document.querySelector('.profile__job');
 const buttonOpenPopupProfile = document.querySelector('.profile__edit');
 const buttonOpenPopupCard = document.querySelector('.profile__add-button');
 
-
 const elementList = '.photo-grid';
 
 const popupImage = document.querySelector('.popup_name_image');

@@ -24,7 +24,7 @@ export class Card {
   getId() {
     return this._id;
  }
- 
+
 // метод лайк карточки, изменение количества лайков
 handleCardLike(data) {
   this._likes = data.likes;

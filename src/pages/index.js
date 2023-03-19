@@ -1,3 +1,5 @@
+'use strict'
+
 // импорт главного файла стилей
 import "../pages/index.css";
 
@@ -41,14 +43,6 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 });
-
-api.getInitialCards()
-.then((res) => {
-  console.log(res);
-})
-.catch((err) => {
-  console.log(err)
-})
 
 let userId = "";
 
@@ -102,6 +96,7 @@ const editProfilePopup = new PopupWithForm({
     editProfilePopup.loading(true);
     api.editUserInfo(data)
       .then((data) => {
+        console.log(data);
         userInfo.setUserInfo(data);
         editProfilePopup.close();
       })
@@ -146,8 +141,8 @@ const createCard = (data) => {
   const card = new Card({
     data: data,
     userId: userId,
-    handleCardClick: () => {
-      popupWithImage.open(data);
+    handleCardClick: (name, link) => {
+      popupWithImage.open(name, link);
     },
     handleCardDelete: () => {
       popupWithSubmit.open();

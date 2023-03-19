@@ -22,7 +22,7 @@ export class Api {
     return fetch(`${this._url}/cards`, {
        headers: this._headers
     })
-    .then(this._checkResponse);
+    .then(res => this._checkResponse(res));
  }
 
   // Добавим новую карточку
@@ -35,7 +35,7 @@ export class Api {
         link: data.link
       })
     })
-    .then(this._checkResponse);
+    .then(res => this._checkResponse(res));
   }
 
   // Удаление карточки
@@ -44,7 +44,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(this._checkResponse);
+    .then(res => this._checkResponse(res));
   }
 
   // Получаем информацию о пользователе с сервера
@@ -52,7 +52,7 @@ export class Api {
     return fetch(`${this._url}/users/me`, {
       headers: this._headers
     })
-    .then(this._checkResponse);
+    .then(res => this._checkResponse(res));
   }
 
   // Обновляем информацию о пользователе с сервера
@@ -62,10 +62,10 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: data.userName,
-        about: data.userJob
+        job: data.userJob
       })
     })
-    .then(this._checkResponse);
+    .then(res => this._checkResponse(res));
   }
   // Редактирование аватара пользователя
   editAvatar(data) {
@@ -76,7 +76,7 @@ export class Api {
         avatar: data.avatar
       })
     })
-    .then(this._checkResponse);
+    .then(res => this._checkResponse(res));
   }
   // Ставим лайк карточке
   setLikeCard(_id) {
@@ -84,7 +84,7 @@ export class Api {
       method: 'PUT',
       headers: this._headers
       })
-      .then(this._checkResponse);
+      .then(res => this._checkResponse(res));
   }
 
   // Удаляем лайк
@@ -93,6 +93,6 @@ export class Api {
       method: 'DELETE',
       headers: this._headers
    })
-   .then(this._checkResponse);
+   .then(res => this._checkResponse(res));
   }
 }

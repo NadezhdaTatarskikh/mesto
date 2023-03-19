@@ -15,23 +15,23 @@ export class FormValidator {
    // Функция, которая добавляет класс с ошибкой
   _showInputError = (inputElement, errorMessage) => {
     const formError = this._formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add(this._inputErrorClass);
+    inputElement.classList.add(this._config.inputErrorClass);
     formError.textContent = errorMessage;
-    formError.classList.add(this._errorClass);
+    formError.classList.add(this._config.errorClass);
   };
 // Функция, которая удаляет класс с ошибкой
-  _hideInputError = (inputElement) => {
+  _hideInputError(inputElement) {
     const formError = this._formElement.querySelector(`.${inputElement.id}-error`);
   //убираем подчеркивание красным
-    inputElement.classList.remove(this._inputErrorClass);
+    inputElement.classList.remove(this._config.inputErrorClass);
   //удаляем текст ошибки
-    formError.classList.remove(this._errorClass);
+    formError.classList.remove(this._config.errorClass);
   // Очищаем ошибку
     formError.textContent = '';
   };
 
 // Функция, которая проверяет валидность форм
-  _isValid = (inputElement) => {
+  _isValid(inputElement) {
     if (!inputElement.validity.valid) {
       // Если поле не прошло валидацию, то показываем ошибку
       this._showInputError(inputElement, inputElement.validationMessage);
