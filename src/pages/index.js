@@ -133,6 +133,7 @@ editAvatarPopup.setEventListeners();
 
 //функция открытия попапа редактирования аватара
 buttonOpenPopupAvatar.addEventListener('click', () => {
+  formEditAvatarValidate.resetValidation();
   editAvatarPopup.open();
 })
 
@@ -193,7 +194,7 @@ const editCardPopup = new PopupWithForm({
     editCardPopup.loading(true);
     api.newCardElement(data)
       .then((data) => {
-        cardsList.addItem(createCard(data))
+        cardsList.addCardAppend(createCard(data))
         editCardPopup.close();
       })
       .catch((err) => {
