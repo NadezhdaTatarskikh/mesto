@@ -1,17 +1,18 @@
 'use strict'
 
 export class Card {
-  constructor({ data, userId, handleCardClick, handleAddLike, handleLikeDelite }, templateSelector) {
+  constructor({ data, userId, handleCardClick, handleDeleteCard, handleAddLike, handleLikeDelite }, templateSelector) {
     this._name = data.name;
     this._link = data.link;
-    this._handleCardClick =  handleCardClick;
     this._id = data._id;
     this._userId = userId;
     this._likes = data.likes;
-    this._likes = data.likes;
+    this._handleCardClick =  handleCardClick;
     this._handleAddLike = handleAddLike;
     this._handleLikeDelite = handleLikeDelite;
+    this._handleAddLike = handleAddLike;
     this._owner = data.owner._id;
+    this._handleDeleteCard = handleDeleteCard;
     this._templateSelector = templateSelector;
   }
 
@@ -33,13 +34,13 @@ handleCardLike(data) {
 };
 
 //метод удаления карточки
-_handleCardDelete() {
+_deleteCard() {
   this._element.remove();
   this._element = null;
 };
 
 //метод ставим или убираем лайк
-_checkLiked() {
+_checkLikeCard() {
   if (this._likeCard.classList.contains('photo-grid__button_active')) {
     this._handleLikeDelite(this._id);
   } else {
@@ -57,7 +58,7 @@ _checkDeleteCard() {
 //метод проверяем "лайк" пользователя
 _isCardLiked() {
   if (this._likes.some((user) => {
-     return this._userId === user._id;
+    return this._userId === user._id;
   })) {
     this._likeCard.classList.add('photo-grid__button_active');
   }
@@ -66,12 +67,12 @@ _isCardLiked() {
 //метод добавления всех обработчиков
 _setEventListeners() {
   //клик по лайку
-    this._likeCard.addEventListener("click", () => this._checkLiked());
+    this._likeCard.addEventListener("click", () => this._checkLikeCard());
   //клик на мусорке
-   this._deleteImage.addEventListener('click', () => this._handleCardDelete());
+   this._deleteImage.addEventListener('click', () => this._handleDeleteCard());
   //клик по карточке
     this._cardImage.addEventListener('click', () => {
-      this._handleCardClick(this._name, this._link);
+      this._handleCardClick();
     });
   }
 
@@ -90,8 +91,8 @@ generateCard() {
       this._likesNumber.textContent = this._likes.length;
   //навешиваем события
       this._setEventListeners();
-      this._checkLiked();
       this._isCardLiked();
+      this._checkDeleteCard();
   //возвращаем готовую карточку
       return this._element;
     }

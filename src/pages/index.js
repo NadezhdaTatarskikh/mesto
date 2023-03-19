@@ -62,8 +62,8 @@ const popupWithImage = new PopupWithImage('.popup_name_image');
 popupWithImage.setEventListeners();
 
 // попап удаления карточки
-const popupWithSubmit = new PopupWithSubmit('.popup_delete-card');
-popupWithSubmit.setEventListeners();
+const popupCardDelete = new PopupWithSubmit('.popup_delete-card');
+popupCardDelete.setEventListeners();
 
 //экземпляр UserInfo с селекторами профиля
 const userInfo = new UserInfo({
@@ -142,16 +142,16 @@ const createCard = (data) => {
   const card = new Card({
     data: data,
     userId: userInfo.getUserId(),
-    handleCardClick: (name, link) => {
-      popupWithImage.open(name, link);
+    handleCardClick: () => {
+      popupWithImage.open(data);
     },
-    handleCardDelete: () => {
-      popupWithSubmit.open();
-      popupWithSubmit.setSubmitForm(() => {
+    handleDeleteCard: () => {
+      popupCardDelete.open();
+      popupCardDelete.setSubmitForm(() => {
         api.deleteCard(card.getId())
           .then(() => {
             card.deleteCard();
-            popupWithSubmit.close();
+            popupCardDelete.close();
           })
           .catch((err) => {
             console.log(`Ошибка: ${err}`);
