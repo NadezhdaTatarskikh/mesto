@@ -24,7 +24,7 @@ export class Card {
 
   getId() {
     return this._id;
- }
+  }
 
 // метод лайк карточки, изменение количества лайков
 handleCardLike(data) {
@@ -33,11 +33,11 @@ handleCardLike(data) {
   this._likesNumber.textContent = this._likes.length;
 };
 
-//метод удаления карточки
-_deleteCard() {
-  this._element.remove();
-  this._element = null;
-};
+  //метод удаления карточки
+  deleteCard() {
+    this._element.remove();
+    this._element = null;
+  }
 
 //метод ставим или убираем лайк
 _checkLikeCard() {

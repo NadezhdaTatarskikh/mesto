@@ -44,13 +44,10 @@ const api = new Api({
   }
 });
 
-let userId = "";
-
 // Загрузка готовых карточек и данных о пользователе с сервера
 Promise.all([api.getInitialCards(), api.getUserInfo()])
 .then(([initialCards, userData]) => {
   userInfo.setUserInfo(userData);
-  userId = userData._id;
   cardsList.renderItems(initialCards);
 })
 .catch((err) => {

@@ -73,8 +73,8 @@ editAvatar(data) {
   // Удаление карточки
   deleteCard(_id) {
     return fetch(`${this._url}/cards/${_id}`, {
-      method: 'DELETE',
-      headers: this._headers
+       method: 'DELETE',
+       headers: this._headers
     })
     .then(res => this._checkResponse(res));
   }
