@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 // создаём класс, который отвечает за отрисовку элементов на странице
 export class Section {
@@ -7,10 +7,10 @@ export class Section {
     this._container = document.querySelector(containerSelector);
   }
 
-// метод, который отвечает за создание и отрисовку данных на странице
+  // метод, который отвечает за создание и отрисовку данных на странице
   renderItems(items) {
     items.forEach((item) => {
-      this._renderer(item)
+      this._renderer(item);
     });
   }
 
@@ -21,5 +21,5 @@ export class Section {
 
   addCardAppend(element) {
     this._container.prepend(element);
- }
+  }
 }
